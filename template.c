@@ -28,9 +28,18 @@
 
 int main(void) {
     FILE *data = fopen("data.txt", "r");
+    char *line = NULL;
+    size_t linecap = 0;
+    ssize_t linelen = 0;
 
     if (data == NULL) {
     	printf("Unable to open data: %s\n", strerror(errno));
     	return -errno;
     }
+
+    while ((linelen = getline(&line, &linecap, data)) > 0) {
+	    /* do stuff */
+    }
+
+    return 0;
 }
